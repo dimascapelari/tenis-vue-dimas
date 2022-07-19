@@ -1,19 +1,7 @@
 <template>
   <div id="pedido-table" v-if="pedidos">
     <Message :msg="msg" v-show="msg" />
-    <!--  <div>
-      <div id="burger-table-heading">
-        <div class="order-id">#:</div>
-        <div>Código EAN:</div>
-        <div>Código Interno:</div>
-        <div>Descrição:</div>
-        <div>Detalhamento:</div>
-        <div>Fabricante:</div>
-        <div>Cor:</div>
-        <div>Tamanho:</div>
-        <div>Preço:</div>
-      </div>
-    </div>  -->
+
     <div id="pedido-table-rows">
       <div class="pedido-table-row" v-for="pedido in pedidos" :key="pedido.id">
         <div class="order-number">{{ pedido.id }}</div>
@@ -27,22 +15,6 @@
         <div><strong>Preço:</strong> {{ pedido.preco }}</div>
 
         <div>
-          <!--
-          <select
-            name="status"
-            class="status"
-            @change="updateBurger($event, burger.id)"
-          >
-            <option
-              :value="s.tipo"
-              v-for="s in status"
-              :key="s.id"
-              :selected="burger.status == s.tipo"
-            >
-              {{ s.tipo }}
-            </option>
-          </select>
-          -->
           <button class="delete-btn" @click="deletePedido(pedido.id)">
             Deletar
           </button>
@@ -51,7 +23,7 @@
     </div>
   </div>
   <div v-else>
-    <h2>Não há pedidos no momento!</h2>
+    <h2>Não há produtos no momento!</h2>
   </div>
 </template>
 <script>
@@ -75,14 +47,8 @@ export default {
       const req = await fetch("http://localhost:3000/pedidos");
       const data = await req.json();
       this.pedidos = data;
-      // Resgata os status de pedidos
-      this.getStatus();
     },
-    async getStatus() {
-      const req = await fetch("http://localhost:3000/status");
-      const data = await req.json();
-      this.status = data;
-    },
+
     async deletePedido(id) {
       const req = await fetch(`http://localhost:3000/pedidos/${id}`, {
         method: "DELETE",
@@ -108,7 +74,7 @@ export default {
       const res = await req.json();
 
       // colocar uma msg de sistema
-      this.msg = `Pedido Nº ${res.id} foi atualizado para ${res.status}!`;
+      this.msg = `Pedido com id${res.id} foi atualizado!`;
 
       // limpar msg
       setTimeout(() => (this.msg = ""), 3000);

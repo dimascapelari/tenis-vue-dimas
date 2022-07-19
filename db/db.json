@@ -3,23 +3,28 @@
     "cores": [
       {
         "id": 1,
-        "tipo": "Branco"
+        "tipo": "Branco",
+        "codcor": "8,44"
       },
       {
         "id": 2,
-        "tipo": "Preto"
+        "tipo": "Laranja",
+        "codcor": "4,19"
       },
       {
         "id": 3,
-        "tipo": "Cinza"
+        "tipo": "Amarelo",
+        "codcor": "5,17"
       },
       {
         "id": 4,
-        "tipo": "Azul"
+        "tipo": "Azul",
+        "codcor": "6,39"
       },
       {
         "id": 5,
-        "tipo": "Vermelho"
+        "tipo": "Vermelho",
+        "codcor": "4,14"
       }
     ],
     "tamanhos": [
@@ -47,43 +52,47 @@
     "fabricantes": [
       {
         "id": 1,
-        "tipo": "Nike"
+        "tipo": "Nike",
+        "codmarc": "001ni"
       },
       {
         "id": 2,
-        "tipo": "Adidas"
+        "tipo": "Adidas",
+        "codmarc": "002ad"
       },
       {
         "id": 3,
-        "tipo": "Mizuno"
+        "tipo": "Mizuno",
+        "codmarc": "003mi"
       },
       {
         "id": 4,
-        "tipo": "New Balance"
+        "tipo": "New Balance",
+        "codmarc": "004ne"
       }
     ]
   },
   "pedidos": [
     {
-      "ean": "1111111111111111111",
-      "descricao": "cano alto",
+      "ean": "2222222222222",
+      "descricao": "cano baixo",
       "detalhamento": "esporte",
-      "preco": "400,00",
-      "fabricante": "Mizuno",
-      "cor": "Vermelho",
+      "preco": "350,00",
+      "fabricante": "001ni",
+      "cor": "8,44",
       "tamanho": "40",
-      "codigointerno": "147",
+      "codigointerno": "33",
       "id": 1
     },
     {
-      "ean": "1111111111111111111",
+      "ean": "33333333333333",
       "descricao": "cano baixo",
-      "detalhamento": "sola de borracha",
+      "detalhamento": "solado de borracha",
       "preco": "450,00",
-      "fabricante": "Nike",
-      "cor": "Preto",
-      "tamanho": "40",
-      "codigointerno": "33",
+      "fabricante": "002ad",
+      "cor": "4,14",
+      "tamanho": "38",
+      "codigointerno": "23213213",
       "id": 2
     }
   ]

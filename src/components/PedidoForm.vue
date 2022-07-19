@@ -53,7 +53,7 @@
             <option
               v-for="fabricante in fabricantes"
               :key="fabricante.id"
-              :value="fabricante.tipo"
+              :value="fabricante.codmarc"
             >
               {{ fabricante.tipo }}
             </option>
@@ -63,7 +63,7 @@
         <div class="input-container">
           <label for="descricao">Cores:</label>
           <select name="descricao" id="descricao" v-model="cor">
-            <option v-for="cor in cores" :key="cor.id" :value="cor.tipo">
+            <option v-for="cor in cores" :key="cor.id" :value="cor.codcor">
               {{ cor.tipo }}
             </option>
           </select>
@@ -92,20 +92,7 @@
             placeholder="Digite o valor"
           />
         </div>
-        <!--
-        <div class="input-container">
-          <label for="descricao">Detalhamento:</label>
-          <select name="descricao" id="descricao" v-model="detalhamento">
-            <option
-              v-for="detalhamento in detalhamentos"
-              :key="detalhamento.id"
-              :value="detalhamento.tipo"
-            >
-              {{ detalhamento.tipo }}
-            </option>
-          </select>
-        </div>
--->
+
         <div class="input-container">
           <input type="submit" class="submit-btn" value="Cadastrar!" />
         </div>
@@ -128,6 +115,7 @@ export default {
       precos: null,
       fabricantes: null,
       cores: null,
+      cor: null,
       tamanhos: null,
       ean: null,
       descricao: null,
