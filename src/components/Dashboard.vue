@@ -157,7 +157,7 @@ select {
 }
 .delete-btn {
   background-color: #222;
-  color: #fcba03;
+  color: rgb(178, 134, 97);
   font-weight: bold;
   border: 2px solid #222;
   padding: 10px;

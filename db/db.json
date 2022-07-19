@@ -74,6 +74,17 @@
       "tamanho": "40",
       "codigointerno": "147",
       "id": 1
+    },
+    {
+      "ean": "1111111111111111111",
+      "descricao": "cano baixo",
+      "detalhamento": "sola de borracha",
+      "preco": "450,00",
+      "fabricante": "Nike",
+      "cor": "Preto",
+      "tamanho": "40",
+      "codigointerno": "33",
+      "id": 2
     }
   ]
 }

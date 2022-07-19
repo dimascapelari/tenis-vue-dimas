@@ -1,6 +1,6 @@
 <template>
   <div id="main-banner">
-    <h1>Make Your Burger</h1>
+    <h1>Tênis Vue Dimas</h1>
   </div>
 </template>
 
@@ -12,10 +12,10 @@ export default {
 
 <style scoped>
 #main-banner {
-  background-image: url("/public/img/burger.jpg");
-  background-position: 0 -250px;
+  background-image: url("/public/img/tenis.jpg");
+  background-position: 0;
   background-size: cover;
-  height: 500px;
+  height: 450px;
   display: flex;
   align-items: center;
   justify-content: flex-start;

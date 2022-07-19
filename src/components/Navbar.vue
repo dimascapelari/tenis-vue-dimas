@@ -3,8 +3,8 @@
     <router-link to="/" id="logo-url">
       <img :src="logo" :alt="alt" id="logo" />
     </router-link>
-    <router-link to="/">Home</router-link>
-    <router-link to="/pedidos">Pedidos</router-link>
+    <router-link to="/">Cadastro</router-link>
+    <router-link to="/pedidos">Estoque</router-link>
   </nav>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 #nav {
   background-color: #222;
   border-bottom: 4px solid #111;
-  padding: 15px 50px;
+  padding: 5px 50px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -31,12 +31,13 @@ export default {
 }
 
 #logo {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
 }
 
 #nav a {
-  color: #fcba03;
+  /*color: #fcba03;*/
+  color: rgb(178, 134, 97);
   text-decoration: none;
   margin: 12px;
   transition: 0.5s;

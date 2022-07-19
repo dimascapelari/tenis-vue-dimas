@@ -224,7 +224,7 @@ label {
   margin-bottom: 15px;
   color: #222;
   padding: 5px 10px;
-  border-left: 4px solid #fcba03;
+  border-left: 4px solid rgb(178, 134, 97);
 }
 
 input,
@@ -261,7 +261,7 @@ select {
 
 .submit-btn {
   background-color: #222;
-  color: #fcba03;
+  color: rgb(178, 134, 97);
   font-weight: bold;
   border: 2px solid #222;
   padding: 10px;

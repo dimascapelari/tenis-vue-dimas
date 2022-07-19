@@ -1,6 +1,6 @@
 <template>
   <footer id="footer">
-    <p>Make Your Burger &copy; 2022</p>
+    <p>Tênis Vue Dimas &copy; 2022</p>
   </footer>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   height: 200px;
   background-color: #222;
   border-top: 4px solid #111;
-  color: #fcba03;
+  color: rgb(178, 134, 97);
   display: flex;
   align-items: center;
   justify-content: center;
