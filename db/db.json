@@ -1,0 +1,79 @@
+{
+  "tenis": {
+    "cores": [
+      {
+        "id": 1,
+        "tipo": "Branco"
+      },
+      {
+        "id": 2,
+        "tipo": "Preto"
+      },
+      {
+        "id": 3,
+        "tipo": "Cinza"
+      },
+      {
+        "id": 4,
+        "tipo": "Azul"
+      },
+      {
+        "id": 5,
+        "tipo": "Vermelho"
+      }
+    ],
+    "tamanhos": [
+      {
+        "id": 1,
+        "tipo": "37"
+      },
+      {
+        "id": 2,
+        "tipo": "38"
+      },
+      {
+        "id": 3,
+        "tipo": "39"
+      },
+      {
+        "id": 4,
+        "tipo": "40"
+      },
+      {
+        "id": 5,
+        "tipo": "41"
+      }
+    ],
+    "fabricantes": [
+      {
+        "id": 1,
+        "tipo": "Nike"
+      },
+      {
+        "id": 2,
+        "tipo": "Adidas"
+      },
+      {
+        "id": 3,
+        "tipo": "Mizuno"
+      },
+      {
+        "id": 4,
+        "tipo": "New Balance"
+      }
+    ]
+  },
+  "pedidos": [
+    {
+      "ean": "1111111111111111111",
+      "descricao": "cano alto",
+      "detalhamento": "esporte",
+      "preco": "400,00",
+      "fabricante": "Mizuno",
+      "cor": "Vermelho",
+      "tamanho": "40",
+      "codigointerno": "147",
+      "id": 1
+    }
+  ]
+}
