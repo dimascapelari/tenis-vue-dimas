@@ -74,25 +74,25 @@
   },
   "pedidos": [
     {
-      "ean": "2222222222222",
-      "descricao": "cano baixo",
+      "ean": "1111111111111111111",
+      "descricao": "cano alto",
       "detalhamento": "esporte",
-      "preco": "350,00",
+      "preco": "300,00",
       "fabricante": "001ni",
-      "cor": "8,44",
+      "cor": "4,19",
       "tamanho": "40",
-      "codigointerno": "33",
+      "codigointerno": "147",
       "id": 1
     },
     {
-      "ean": "33333333333333",
+      "ean": "2222222222222",
       "descricao": "cano baixo",
-      "detalhamento": "solado de borracha",
-      "preco": "450,00",
+      "detalhamento": "sola de borracha",
+      "preco": "200,00",
       "fabricante": "002ad",
-      "cor": "4,14",
+      "cor": "8,44",
       "tamanho": "38",
-      "codigointerno": "23213213",
+      "codigointerno": "33",
       "id": 2
     }
   ]

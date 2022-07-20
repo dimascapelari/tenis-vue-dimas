@@ -15,6 +15,12 @@
         <div><strong>Preço:</strong> {{ pedido.preco }}</div>
 
         <div>
+          <router-link
+            class="delete-btn"
+            :to="{ name: 'editar-pedido', params: { id: pedido.id } }"
+            >Update</router-link
+          >
+
           <button class="delete-btn" @click="deletePedido(pedido.id)">
             Deletar
           </button>

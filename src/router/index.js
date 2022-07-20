@@ -11,6 +11,11 @@ const routes = [
     path: '/pedidos',
     name: 'Pedidos',
     component: () => import(/* webpackChunkName: "pedidos" */ '../views/Pedidos.vue')
+  },
+  {
+    path: '/pedido/:id',
+    name: 'editar-pedido',
+    component: () => import(/* webpackChunkName: "pedidos" */ '../views/EditarPedidos.vue')
   }
 ]
 
