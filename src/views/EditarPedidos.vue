@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Editar Pedidos</h1>
-    <form id="pedido-form" @submit="createPedido">
+    <form id="pedido-form">
       <div class="input-container">
         <p><strong>id:</strong> <input type="text" v-model="pedido.id" /></p>
         <p>
@@ -34,13 +34,20 @@
         </p>
       </div>
       <div class="input-container">
-        <input type="submit" class="submit-btn" value="Atualizar!" />
+        <input
+          type="button"
+          @click="atualizaPedido"
+          class="submit-btn"
+          value="Atualizar!"
+        />
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "ViewsEditarPedidos",
   data() {
@@ -64,49 +71,24 @@ export default {
     this.getPedidos();
   },
   methods: {
-    async getPedidos() {
-      const req = await fetch("http://localhost:3000/pedidos");
-      const data = await req.json();
-      this.pedido = data.find(
-        (pedido) => pedido.id === parseInt(this.$route.params.id)
-      );
-      // console.log(this.pedido);
-      // console.log(data);
-    },
-    /*
-    // Envia dados para a API
-    async createPedido(e) {
-      e.preventDefault();
-
-      // console.log("Criou o pedido");
-
-      const data = {
-        ean: this.ean,
-        descricao: this.descricao,
-        detalhamento: this.detalhamento,
-        preco: this.preco,
-        fabricante: this.fabricante,
-        cor: this.cor,
-        tamanho: this.tamanho,
-        codigointerno: this.codigointerno,
-      };
-
-      const dataJson = JSON.stringify(data);
-
-      const req = await fetch("http://localhost:3000/pedidos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: dataJson,
+    getPedidos() {
+      axios.get("http://localhost:3000/pedidos").then((response) => {
+        this.pedido = response.data.find(
+          (pedido) => pedido.id === parseInt(this.$route.params.id)
+        );
       });
+    },
 
-      const res = await req.json();
-      // colocar uma msg de sistema
-      this.msg = `Pedido Nº ${res.id} realizado com sucesso`;
-      console.log(this.msg);
-
-      // limpar msg
-      setTimeout(() => (this.msg = ""), 3000);
-    },*/
+    atualizaPedido() {
+      axios
+        .put(
+          `http://localhost:3000/pedidos/${this.$route.params.id}`,
+          this.pedido
+        )
+        .then((response) => {
+          console.log(response);
+        });
+    },
   },
 };
 </script>
