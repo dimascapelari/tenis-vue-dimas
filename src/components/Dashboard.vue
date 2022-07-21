@@ -4,19 +4,27 @@
 
     <div id="pedido-table-rows">
       <div class="pedido-table-row" v-for="pedido in pedidos" :key="pedido.id">
-        <div class="order-number">{{ pedido.id }}</div>
-        <div><strong>Código EAN:</strong> {{ pedido.ean }}</div>
-        <div><strong>Código Interno:</strong> {{ pedido.codigointerno }}</div>
-        <div><strong>Descrição:</strong> {{ pedido.descricao }}</div>
-        <div><strong>Detalhamento:</strong> {{ pedido.detalhamento }}</div>
-        <div><strong>Fabricante:</strong> {{ pedido.fabricante }}</div>
-        <div><strong>Cor:</strong> {{ pedido.cor }}</div>
-        <div><strong>Tamanho:</strong> {{ pedido.tamanho }}</div>
-        <div><strong>Preço:</strong> {{ pedido.preco }}</div>
+        <div class="order-number row"><strong>id:</strong> {{ pedido.id }}</div>
+        <div class="row"><strong>Código EAN:</strong> {{ pedido.ean }}</div>
+        <div class="row">
+          <strong>Código Interno:</strong> {{ pedido.codigointerno }}
+        </div>
+        <div class="row">
+          <strong>Descrição:</strong> {{ pedido.descricao }}
+        </div>
+        <div class="row">
+          <strong>Detalhamento:</strong> {{ pedido.detalhamento }}
+        </div>
+        <div class="row">
+          <strong>Fabricante:</strong> {{ pedido.fabricante }}
+        </div>
+        <div class="row"><strong>Cor:</strong> {{ pedido.cor }}</div>
+        <div class="row"><strong>Tamanho:</strong> {{ pedido.tamanho }}</div>
+        <div class="row"><strong>Preço:</strong> {{ pedido.preco }}</div>
 
-        <div>
+        <div class="container-btn">
           <router-link
-            class="delete-btn"
+            class="up-btn"
             :to="{ name: 'editar-pedido', params: { id: pedido.id } }"
             >Update</router-link
           >
@@ -117,17 +125,28 @@ export default {
 }
 #pedido-table-heading div,
 .pedido-table-row div {
-  width: 30%;
+  width: 25%;
 }
 #pedido-table-heading .order-id,
 .pedido-table-row .order-number {
-  width: 5%;
+  width: 25%;
 }
+
+.row {
+  border: 1px solid #ccc;
+  margin: 1px;
+}
+
 select {
   padding: 12px 6px;
   margin-right: 12px;
 }
-.delete-btn {
+
+.container-btn {
+  margin-top: 10px;
+}
+.delete-btn,
+.up-btn {
   background-color: #222;
   color: rgb(178, 134, 97);
   font-weight: bold;
@@ -138,8 +157,16 @@ select {
   cursor: pointer;
   transition: 0.5s;
 }
+.up-btn {
+  margin: 10px 10px 0 0;
+  text-decoration: none;
+}
 
 .delete-btn:hover {
+  background-color: transparent;
+  color: #222;
+}
+.up-btn:hover {
   background-color: transparent;
   color: #222;
 }

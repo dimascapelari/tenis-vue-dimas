@@ -51,7 +51,6 @@
                 </option>
               </template>
             </select>
-            <!-- <input type="text" v-model="pedido.tamanho" /> -->
           </p>
           <p>
             <strong>Preço:</strong> <input type="text" v-model="pedido.preco" />
@@ -67,14 +66,6 @@
         </div>
       </form>
     </section>
-    <!-- teste -------------------------- -->
-
-    <!-- <ul>
-      <li v-for="ped in this.pedido" :key="ped.id">
-        <p>{{ ped }}</p>
-      </li>
-    </ul> -->
-    <!-- -------------------------------- -->
   </div>
 </template>
 

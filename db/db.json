@@ -4,49 +4,94 @@
       {
         "id": 1,
         "tipo": "Branco",
-        "codcor": "8,44"
+        "codcor": "#FFFFFF"
       },
       {
         "id": 2,
         "tipo": "Laranja",
-        "codcor": "4,19"
+        "codcor": "#FF4500"
       },
       {
         "id": 3,
         "tipo": "Amarelo",
-        "codcor": "5,17"
+        "codcor": "#FFFF00"
       },
       {
         "id": 4,
         "tipo": "Azul",
-        "codcor": "6,39"
+        "codcor": "#0000FF"
       },
       {
         "id": 5,
         "tipo": "Vermelho",
-        "codcor": "4,14"
+        "codcor": "#FF0000"
+      },
+      {
+        "id": 6,
+        "tipo": "Cinza",
+        "codcor": "#808080"
       }
     ],
     "tamanhos": [
       {
         "id": 1,
-        "tipo": "37"
+        "tipo": "30"
       },
       {
         "id": 2,
-        "tipo": "38"
+        "tipo": "31"
       },
       {
         "id": 3,
-        "tipo": "39"
+        "tipo": "32"
       },
       {
         "id": 4,
-        "tipo": "40"
+        "tipo": "33"
       },
       {
         "id": 5,
+        "tipo": "34"
+      },
+      {
+        "id": 6,
+        "tipo": "35"
+      },
+      {
+        "id": 7,
+        "tipo": "36"
+      },
+      {
+        "id": 8,
+        "tipo": "37"
+      },
+      {
+        "id": 9,
+        "tipo": "38"
+      },
+      {
+        "id": 10,
+        "tipo": "39"
+      },
+      {
+        "id": 11,
+        "tipo": "40"
+      },
+      {
+        "id": 12,
         "tipo": "41"
+      },
+      {
+        "id": 13,
+        "tipo": "42"
+      },
+      {
+        "id": 14,
+        "tipo": "43"
+      },
+      {
+        "id": 15,
+        "tipo": "44"
       }
     ],
     "fabricantes": [
@@ -69,42 +114,61 @@
         "id": 4,
         "tipo": "New Balance",
         "codmarc": "004ne"
+      },
+      {
+        "id": 5,
+        "tipo": "All Star",
+        "codmarc": "005al"
+      },
+      {
+        "id": 6,
+        "tipo": "Fila",
+        "codmarc": "006fi"
+      },
+      {
+        "id": 7,
+        "tipo": "Asics",
+        "codmarc": "007as"
+      },
+      {
+        "id": 8,
+        "tipo": "Puma",
+        "codmarc": "008pu"
+      },
+      {
+        "id": 9,
+        "tipo": "Olympikus",
+        "codmarc": "009ol"
+      },
+      {
+        "id": 10,
+        "tipo": "Reebok",
+        "codmarc": "010re"
       }
     ]
   },
   "pedidos": [
     {
-      "ean": "1111111111111111111",
-      "descricao": "cano alto",
+      "ean": "987456321",
+      "descricao": "cano baixo",
       "detalhamento": "esporte",
-      "preco": "200,00",
-      "fabricante": "002ad",
-      "cor": "8,44",
-      "tamanho": "38",
-      "codigointerno": "222",
+      "preco": "300,00",
+      "fabricante": "006fi",
+      "cor": "#0000FF",
+      "tamanho": "40",
+      "codigointerno": "147",
       "id": 1
     },
     {
-      "ean": "2222222222222",
-      "descricao": "cano baixo",
+      "ean": "112233445566",
+      "descricao": "cano alto",
       "detalhamento": "sola de borracha",
-      "preco": "200,00",
-      "fabricante": "002ad",
-      "cor": "8,44",
-      "tamanho": "38",
-      "codigointerno": "33",
-      "id": 2
-    },
-    {
-      "ean": "123456789",
-      "descricao": "sapa tênis",
-      "detalhamento": "social",
-      "preco": "245,00",
-      "fabricante": "004ne",
-      "cor": "6,39",
-      "tamanho": "41",
+      "preco": "450,00",
+      "fabricante": "001ni",
+      "cor": "#FFFFFF",
+      "tamanho": "37",
       "codigointerno": "258",
-      "id": 3
+      "id": 2
     }
   ]
 }
