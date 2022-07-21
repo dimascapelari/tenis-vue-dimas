@@ -1,19 +1,19 @@
 # Tênis Vue Dimas
 
-## Project setup
+## A instalação do Projeto deverá ser executada em 2 terminais.
+
+No 1º Terminal digitar
 ```
-npm install
+npm install (para instalar os modulos do projeto)
+npm run backend (para executar o json-server e funcionar a API)
 ```
 
-### Compiles and hot-reloads for development
+No 2º Terminal digitar
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+npm run serve (para rodar o projeto)
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+O projeto irá rodar no endereço e porta local:
+```
+ http://localhost:8080/
+```
