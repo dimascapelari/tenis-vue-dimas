@@ -77,10 +77,10 @@
       "ean": "1111111111111111111",
       "descricao": "cano alto",
       "detalhamento": "esporte",
-      "preco": "90,00",
-      "fabricante": "001ni",
-      "cor": "4,19",
-      "tamanho": "36",
+      "preco": "200,00",
+      "fabricante": "002ad",
+      "cor": "8,44",
+      "tamanho": "38",
       "codigointerno": "222",
       "id": 1
     },
@@ -94,6 +94,17 @@
       "tamanho": "38",
       "codigointerno": "33",
       "id": 2
+    },
+    {
+      "ean": "123456789",
+      "descricao": "sapa tênis",
+      "detalhamento": "social",
+      "preco": "245,00",
+      "fabricante": "004ne",
+      "cor": "6,39",
+      "tamanho": "41",
+      "codigointerno": "258",
+      "id": 3
     }
   ]
 }
