@@ -94,7 +94,7 @@
               id="preco"
               name="preco"
               v-model="variacao.preco"
-              placeholder="Digite o valor"
+              placeholder="Digite valor"
             />
           </div>
 
@@ -237,20 +237,25 @@ export default {
 }
 
 .variacoes-input-container {
-  margin-bottom: 20px;
+  margin: 4px 0 4px 0;
   width: 95px;
+}
+
+.variacoes-input-container label {
+  border-left: 4px solid transparent;
 }
 
 #preco,
 #cores,
 #tamanho {
   width: 95px;
+  margin-left: 4px;
 }
 
 .action {
   border: 1px solid gray;
   padding: 6px;
-  margin: 2px;
+  margin: 15px 2px 0 4px;
   border-radius: 50px;
   width: 40px;
   font-size: 16px;
@@ -308,6 +313,7 @@ select {
 .variacoes {
   display: flex;
   justify-content: space-between;
+  border: 1px solid rgb(178, 134, 97);
 }
 
 .submit-btn {
@@ -318,7 +324,7 @@ select {
   border-radius: 10px;
   padding: 10px;
   font-size: 16px;
-  margin: 0 auto;
+  margin: 15px auto;
   cursor: pointer;
   transition: 0.5s;
 }

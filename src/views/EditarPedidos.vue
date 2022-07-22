@@ -35,13 +35,14 @@
             </select>
           </div>
           <div class="variacoes">
-            <strong>Variações</strong>
+            <strong>Variações</strong><br /><br />
             <div
               class="variacoes-item"
               v-for="(variacao, index) in produto.variacoes"
               :key="index"
             >
               <div class="variacoes-cores">
+                <strong>Cor:</strong>
                 <select v-model="variacao.cor">
                   <option
                     v-for="(cor, index) in cores"
@@ -53,10 +54,11 @@
                 </select>
               </div>
               <div class="variacoes-tamanho">
+                <strong>Tamanho:</strong>
                 <select v-model="variacao.tamanho">
                   <option
                     v-for="(tamanho, index) in tamanhos"
-                    :value="tamanho.id"
+                    :value="tamanho.tipo"
                     :key="index"
                   >
                     {{ tamanho.tipo }}
@@ -64,6 +66,7 @@
                 </select>
               </div>
               <div class="variacoes-preco">
+                <strong>Preço:</strong>
                 <input type="text" v-model="variacao.preco" />
               </div>
               <div class="variacoes-acoes">
@@ -183,7 +186,7 @@ export default {
 
 <style scoped>
 .container {
-  height: 100vh;
+  height: 100%;
 }
 
 .container h1 {
@@ -200,6 +203,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 400px;
+  margin: 20px;
 }
 
 .input-container input {
@@ -225,16 +229,15 @@ export default {
 }
 
 select {
-  width: 153px;
   margin: 3px;
 }
 
 .action {
   border: 1px solid gray;
   padding: 4px;
-  margin: 2px;
+  margin: 15px 2px 2px 4px;
   border-radius: 50px;
-  width: 32px;
+  width: 40px;
   font-size: 16px;
   font-weight: bolder;
 }
@@ -259,6 +262,7 @@ select {
 }
 .variacoes {
   margin-top: 15px;
+  border: 1px solid;
 }
 
 .input {

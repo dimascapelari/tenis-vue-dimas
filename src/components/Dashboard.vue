@@ -9,24 +9,24 @@
         :key="produto.id"
       >
         <div class="order-number row">
-          <strong>id:</strong> {{ produto.id }}
+          <strong>id: </strong> {{ produto.id }}
         </div>
-        <div class="row"><strong>Código EAN:</strong> {{ produto.ean }}</div>
+        <div class="row"><strong>Código EAN: </strong> {{ produto.ean }}</div>
         <div class="row">
-          <strong>Código Interno:</strong> {{ produto.codigointerno }}
-        </div>
-        <div class="row">
-          <strong>Descrição:</strong> {{ produto.descricao }}
+          <strong>Código Interno: </strong> {{ produto.codigointerno }}
         </div>
         <div class="row">
-          <strong>Detalhamento:</strong> {{ produto.detalhamento }}
+          <strong>Descrição: </strong> {{ produto.descricao }}
         </div>
         <div class="row">
-          <strong>Fabricante:</strong>
+          <strong>Detalhamento: </strong> {{ produto.detalhamento }}
+        </div>
+        <div class="row">
+          <strong>Fabricante: </strong>
           <template v-for="(fabricante, index) in fabricantes" :key="index">
-            <template v-if="fabricante.codmarc === produto.fabricante">{{
-              fabricante.tipo
-            }}</template>
+            <template v-if="fabricante.codmarc === produto.fabricante">
+              {{ fabricante.tipo }}</template
+            >
           </template>
         </div>
         <div class="variacoes">
@@ -44,7 +44,12 @@
               </template>
             </div>
             <div class="variacoes-tamanho">
-              <strong>Tamanho:</strong>{{ variacao.tamanho }}
+              <!-- <strong>Tamanho:</strong>{{ variacao.tamanho }} -->
+              <div v-for="(tamanho, index) in tamanhos" :key="index">
+                <div v-if="tamanho.tipo === variacao.tamanho">
+                  <strong>Tamanho:</strong>{{ tamanho.id }}
+                </div>
+              </div>
             </div>
             <div class="variacoes-preco">
               <strong>Preço:</strong> {{ variacao.preco }}
@@ -82,12 +87,19 @@ export default {
       msg: null,
       cores: [],
       fabricantes: [],
+      tamanhos: [],
     };
   },
   components: {
     Message,
   },
   methods: {
+    getTamanhos() {
+      axios.get("http://localhost:3000/tenis").then((response) => {
+        this.tamanhos = response.data.tamanhos;
+      });
+    },
+
     getFabricantes() {
       axios.get("http://localhost:3000/tenis").then((response) => {
         this.fabricantes = response.data.fabricantes;
@@ -125,6 +137,7 @@ export default {
     this.getPedidos();
     this.getCores();
     this.getFabricantes();
+    this.getTamanhos();
   },
 };
 </script>
@@ -151,11 +164,11 @@ export default {
 }
 #pedido-table-heading div,
 .pedido-table-row {
-  width: 55%;
+  width: 35%;
 }
 #pedido-table-heading .order-id,
 .pedido-table-row .order-number {
-  width: 55%;
+  width: 99.5%;
 }
 
 .variacoes {
