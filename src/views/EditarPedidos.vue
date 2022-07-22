@@ -1,60 +1,90 @@
 <template>
   <div class="container">
-    <h1>Editar Pedidos</h1>
+    <h1>Editar Produto</h1>
     <section class="form-container">
       <form id="pedido-form">
         <div class="input-container">
-          <p><strong>id:</strong> <input type="text" v-model="pedido.id" /></p>
-          <p>
+          <div class="input">
+            <strong>id:</strong>
+            <input type="text" v-model="produto.id" />
+          </div>
+          <div class="input">
             <strong>Código EAN:</strong>
-            <input type="text" v-model="pedido.ean" />
-          </p>
-          <p>
+            <input type="text" v-model="produto.ean" />
+          </div>
+          <div class="input">
             <strong>Código Interno:</strong>
-            <input type="text" v-model="pedido.codigointerno" />
-          </p>
-          <p>
+            <input type="text" v-model="produto.codigointerno" />
+          </div>
+          <div class="input">
             <strong>Descrição:</strong>
-            <input type="text" v-model="pedido.descricao" />
-          </p>
-          <p>
+            <input type="text" v-model="produto.descricao" />
+          </div>
+          <div class="input">
             <strong>Detalhamento:</strong>
-            <input type="text" v-model="pedido.detalhamento" />
-          </p>
-          <p>
+            <input type="text" v-model="produto.detalhamento" />
+          </div>
+          <div class="input">
             <strong>Fabricante:</strong>
-            <select v-model="pedido.fabricante">
+            <select v-model="produto.fabricante">
               <template v-for="fabricante in fabricantes" :key="fabricante.id">
                 <option :value="fabricante.codmarc">
                   {{ fabricante.tipo }}
                 </option>
               </template>
             </select>
-          </p>
-
-          <p>
-            <strong>Cor:</strong>
-            <select v-model="pedido.cor">
-              <template v-for="cor in cores" :key="cor.id">
-                <option :value="cor.codcor">
-                  {{ cor.tipo }}
-                </option>
-              </template>
-            </select>
-          </p>
-          <p>
-            <strong>Tamanho:</strong>
-            <select v-model="pedido.tamanho">
-              <template v-for="tamanho in tamanhos" :key="tamanho.id">
-                <option :value="tamanho.tipo">
-                  {{ tamanho.tipo }}
-                </option>
-              </template>
-            </select>
-          </p>
-          <p>
-            <strong>Preço:</strong> <input type="text" v-model="pedido.preco" />
-          </p>
+          </div>
+          <div class="variacoes">
+            <strong>Variações</strong>
+            <div
+              class="variacoes-item"
+              v-for="(variacao, index) in produto.variacoes"
+              :key="index"
+            >
+              <div class="variacoes-cores">
+                <select v-model="variacao.cor">
+                  <option
+                    v-for="(cor, index) in cores"
+                    :value="cor.codcor"
+                    :key="index"
+                  >
+                    {{ cor.tipo }}
+                  </option>
+                </select>
+              </div>
+              <div class="variacoes-tamanho">
+                <select v-model="variacao.tamanho">
+                  <option
+                    v-for="(tamanho, index) in tamanhos"
+                    :value="tamanho.id"
+                    :key="index"
+                  >
+                    {{ tamanho.tipo }}
+                  </option>
+                </select>
+              </div>
+              <div class="variacoes-preco">
+                <input type="text" v-model="variacao.preco" />
+              </div>
+              <div class="variacoes-acoes">
+                <button
+                  type="button"
+                  class="action action-success"
+                  @click="adicionarVariacao"
+                >
+                  +
+                </button>
+                <button
+                  v-if="produto.variacoes.length > 1"
+                  type="button"
+                  class="action action-danger"
+                  @click="removerVariacao(index)"
+                >
+                  -
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="input-container">
           <input
@@ -76,16 +106,14 @@ export default {
   name: "ViewsEditarPedidos",
   data() {
     return {
-      pedido: {
+      produto: {
         id: "",
         ean: "",
         codigointerno: "",
         descricao: "",
         detalhamento: "",
         fabricante: "",
-        cor: "",
-        tamanho: "",
-        preco: "",
+        variacoes: [],
       },
       fabricantes: [],
       cores: [],
@@ -102,6 +130,17 @@ export default {
   },
 
   methods: {
+    adicionarVariacao() {
+      const variacao = { cor: "", tamanho: "", preco: "" };
+      this.produto.variacoes.push(variacao);
+    },
+
+    removerVariacao(indexVariacao) {
+      this.produto.variacoes = this.produto.variacoes.filter(
+        (variacao, index) => index !== indexVariacao
+      );
+    },
+
     getTamanhos() {
       axios.get("http://localhost:3000/tenis").then((response) => {
         this.tamanhos = response.data.tamanhos;
@@ -117,14 +156,13 @@ export default {
     getFabricantes() {
       axios.get("http://localhost:3000/tenis").then((response) => {
         this.fabricantes = response.data.fabricantes;
-        console.log(this.fabricantes.fabricantes);
       });
     },
 
     getPedidos() {
-      axios.get("http://localhost:3000/pedidos").then((response) => {
-        this.pedido = response.data.find(
-          (pedido) => pedido.id === parseInt(this.$route.params.id)
+      axios.get("http://localhost:3000/produtos").then((response) => {
+        this.produto = response.data.find(
+          (produto) => produto.id === parseInt(this.$route.params.id)
         );
       });
     },
@@ -132,8 +170,8 @@ export default {
     atualizaPedido() {
       axios
         .put(
-          `http://localhost:3000/pedidos/${this.$route.params.id}`,
-          this.pedido
+          `http://localhost:3000/produtos/${this.$route.params.id}`,
+          this.produto
         )
         .then((response) => {
           console.log(response);
@@ -145,7 +183,7 @@ export default {
 
 <style scoped>
 .container {
-  height: 400px;
+  height: 100vh;
 }
 
 .container h1 {
@@ -161,8 +199,7 @@ export default {
 .input-container {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  align-items: flex-end;
+  width: 400px;
 }
 
 .input-container input {
@@ -174,6 +211,7 @@ export default {
   color: rgb(178, 134, 97);
   font-weight: bold;
   border: 2px solid #222;
+  border-radius: 10px;
   padding: 10px;
   font-size: 16px;
   margin: 0 auto;
@@ -189,5 +227,52 @@ export default {
 select {
   width: 153px;
   margin: 3px;
+}
+
+.action {
+  border: 1px solid gray;
+  padding: 4px;
+  margin: 2px;
+  border-radius: 50px;
+  width: 32px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.action-success {
+  background-color: #c8e6c9;
+}
+
+.action-danger {
+  background-color: #ffcdd2;
+}
+
+.variacoes-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.variacoes-preco,
+.variacoes-cores,
+.variacoes-tamanho {
+  width: 23%;
+}
+.variacoes {
+  margin-top: 15px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+.variacoes-preco input {
+  width: 100%;
+}
+.variacoes-cores select {
+  width: 100%;
+}
+.variacoes-tamanho select {
+  width: 100%;
 }
 </style>

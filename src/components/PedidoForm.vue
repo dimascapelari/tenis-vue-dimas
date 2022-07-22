@@ -2,7 +2,7 @@
   <div>
     <Message :msg="msg" v-show="msg" />
     <div>
-      <form id="pedido-form" @submit="createPedido">
+      <form id="pedido-form">
         <div class="input-container">
           <label for="ean">Código EAN:</label>
           <input
@@ -60,41 +60,64 @@
           </select>
         </div>
 
-        <div class="input-container">
-          <label for="descricao">Cores:</label>
-          <select name="descricao" id="descricao" v-model="cor">
-            <option v-for="cor in cores" :key="cor.id" :value="cor.codcor">
-              {{ cor.tipo }}
-            </option>
-          </select>
-        </div>
+        <div
+          class="variacoes"
+          v-for="(variacao, index) in variacoes"
+          :key="index"
+        >
+          <div class="variacoes-input-container">
+            <label for="cores">Cores:</label>
+            <select name="cores" id="cores" v-model="variacao.cor">
+              <option v-for="cor in cores" :key="cor.id" :value="cor.codcor">
+                {{ cor.tipo }}
+              </option>
+            </select>
+          </div>
 
-        <div class="input-container">
-          <label for="descricao">Tamanho:</label>
-          <select name="descricao" id="descricao" v-model="tamanho">
-            <option
-              v-for="tamanho in tamanhos"
-              :key="tamanho.id"
-              :value="tamanho.tipo"
+          <div class="variacoes-input-container">
+            <label for="tamanho">Tamanho:</label>
+            <select name="descricao" id="tamanho" v-model="variacao.tamanho">
+              <option
+                v-for="tamanho in tamanhos"
+                :key="tamanho.id"
+                :value="tamanho.tipo"
+              >
+                {{ tamanho.tipo }}
+              </option>
+            </select>
+          </div>
+
+          <div class="variacoes-input-container">
+            <label for="nome">Preço:</label>
+            <input
+              type="text"
+              id="preco"
+              name="preco"
+              v-model="variacao.preco"
+              placeholder="Digite o valor"
+            />
+          </div>
+
+          <div class="variacoes-input-container">
+            <button
+              type="button"
+              class="action action-success"
+              @click="adicionarVariacao"
             >
-              {{ tamanho.tipo }}
-            </option>
-          </select>
+              +
+            </button>
+            <button
+              v-if="variacoes.length > 1"
+              type="button"
+              class="action action-danger"
+              @click="removerVariacao(index)"
+            >
+              -
+            </button>
+          </div>
         </div>
-
         <div class="input-container">
-          <label for="nome">Preço:</label>
-          <input
-            type="text"
-            id="preco"
-            name="preco"
-            v-model="preco"
-            placeholder="Digite o valor"
-          />
-        </div>
-
-        <div class="input-container">
-          <input type="submit" class="submit-btn" value="Cadastrar!" />
+          <button class="submit-btn" @click="createPedido">Cadastrar</button>
         </div>
       </form>
     </div>
@@ -124,10 +147,22 @@ export default {
       fabricante: null,
       msg: null,
       codigointerno: null,
+      variacoes: [{ cor: "", tamanho: "", preco: "" }],
     };
   },
   // funções
   methods: {
+    adicionarVariacao() {
+      const variacao = { cor: "", tamanho: "", preco: "" };
+      this.variacoes.push(variacao);
+    },
+
+    removerVariacao(indexVariacao) {
+      this.variacoes = this.variacoes.filter(
+        (variacao, index) => index !== indexVariacao
+      );
+    },
+
     // Puxa dos dados da API
     async getTenis() {
       const req = await fetch("http://localhost:3000/tenis");
@@ -142,25 +177,19 @@ export default {
       this.tamanhos = data.tamanhos;
     },
     // Envia dados para a API
-    async createPedido(e) {
-      e.preventDefault();
-
-      // console.log("Criou o pedido");
-
+    async createPedido() {
       const data = {
         ean: this.ean,
         descricao: this.descricao,
         detalhamento: this.detalhamento,
-        preco: this.preco,
         fabricante: this.fabricante,
-        cor: this.cor,
-        tamanho: this.tamanho,
         codigointerno: this.codigointerno,
+        variacoes: this.variacoes,
       };
 
       const dataJson = JSON.stringify(data);
 
-      const req = await fetch("http://localhost:3000/pedidos", {
+      const req = await fetch("http://localhost:3000/produtos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: dataJson,
@@ -207,6 +236,35 @@ export default {
   margin-bottom: 20px;
 }
 
+.variacoes-input-container {
+  margin-bottom: 20px;
+  width: 95px;
+}
+
+#preco,
+#cores,
+#tamanho {
+  width: 95px;
+}
+
+.action {
+  border: 1px solid gray;
+  padding: 6px;
+  margin: 2px;
+  border-radius: 50px;
+  width: 40px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.action-success {
+  background-color: #c8e6c9;
+}
+
+.action-danger {
+  background-color: #ffcdd2;
+}
+
 label {
   font-weight: bold;
   margin-bottom: 15px;
@@ -247,11 +305,17 @@ select {
   font-weight: bold;
 }
 
+.variacoes {
+  display: flex;
+  justify-content: space-between;
+}
+
 .submit-btn {
   background-color: #222;
   color: rgb(178, 134, 97);
   font-weight: bold;
   border: 2px solid #222;
+  border-radius: 10px;
   padding: 10px;
   font-size: 16px;
   margin: 0 auto;

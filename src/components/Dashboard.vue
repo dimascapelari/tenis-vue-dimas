@@ -1,35 +1,65 @@
 <template>
-  <div id="pedido-table" v-if="pedidos">
+  <div id="pedido-table" v-if="produtos">
     <Message :msg="msg" v-show="msg" />
 
     <div id="pedido-table-rows">
-      <div class="pedido-table-row" v-for="pedido in pedidos" :key="pedido.id">
-        <div class="order-number row"><strong>id:</strong> {{ pedido.id }}</div>
-        <div class="row"><strong>Código EAN:</strong> {{ pedido.ean }}</div>
+      <div
+        class="pedido-table-row"
+        v-for="produto in produtos"
+        :key="produto.id"
+      >
+        <div class="order-number row">
+          <strong>id:</strong> {{ produto.id }}
+        </div>
+        <div class="row"><strong>Código EAN:</strong> {{ produto.ean }}</div>
         <div class="row">
-          <strong>Código Interno:</strong> {{ pedido.codigointerno }}
+          <strong>Código Interno:</strong> {{ produto.codigointerno }}
         </div>
         <div class="row">
-          <strong>Descrição:</strong> {{ pedido.descricao }}
+          <strong>Descrição:</strong> {{ produto.descricao }}
         </div>
         <div class="row">
-          <strong>Detalhamento:</strong> {{ pedido.detalhamento }}
+          <strong>Detalhamento:</strong> {{ produto.detalhamento }}
         </div>
         <div class="row">
-          <strong>Fabricante:</strong> {{ pedido.fabricante }}
+          <strong>Fabricante:</strong>
+          <template v-for="(fabricante, index) in fabricantes" :key="index">
+            <template v-if="fabricante.codmarc === produto.fabricante">{{
+              fabricante.tipo
+            }}</template>
+          </template>
         </div>
-        <div class="row"><strong>Cor:</strong> {{ pedido.cor }}</div>
-        <div class="row"><strong>Tamanho:</strong> {{ pedido.tamanho }}</div>
-        <div class="row"><strong>Preço:</strong> {{ pedido.preco }}</div>
+        <div class="variacoes">
+          <strong>Variações</strong>
+          <div
+            class="variacoes-item"
+            v-for="(variacao, index) in produto.variacoes"
+            :key="index"
+          >
+            <div class="variacoes-cor">
+              <template v-for="(cor, index) in cores" :key="index">
+                <template v-if="cor.codcor === variacao.cor"
+                  ><strong>Cor:</strong> {{ cor.tipo }}</template
+                >
+              </template>
+            </div>
+            <div class="variacoes-tamanho">
+              <strong>Tamanho:</strong>{{ variacao.tamanho }}
+            </div>
+            <div class="variacoes-preco">
+              <strong>Preço:</strong> {{ variacao.preco }}
+            </div>
+          </div>
+        </div>
 
         <div class="container-btn">
           <router-link
             class="up-btn"
-            :to="{ name: 'editar-pedido', params: { id: pedido.id } }"
+            :to="{ name: 'editar-pedido', params: { id: produto.id } }"
             >Update</router-link
           >
 
-          <button class="delete-btn" @click="deletePedido(pedido.id)">
+          <button class="delete-btn" @click="deletePedido(produto.id)">
             Deletar
           </button>
         </div>
@@ -42,62 +72,59 @@
 </template>
 <script>
 import Message from "./Message.vue";
+import axios from "axios";
 
 export default {
   name: "Dashboard",
   data() {
     return {
-      pedidos: null,
-      pedido_id: null,
-      status: [],
+      produtos: null,
       msg: null,
+      cores: [],
+      fabricantes: [],
     };
   },
   components: {
     Message,
   },
   methods: {
-    async getPedidos() {
-      const req = await fetch("http://localhost:3000/pedidos");
-      const data = await req.json();
-      this.pedidos = data;
+    getFabricantes() {
+      axios.get("http://localhost:3000/tenis").then((response) => {
+        this.fabricantes = response.data.fabricantes;
+      });
+    },
+
+    getCores() {
+      axios.get("http://localhost:3000/tenis").then((response) => {
+        this.cores = response.data.cores;
+      });
+    },
+
+    getPedidos() {
+      axios.get("http://localhost:3000/produtos").then((response) => {
+        this.produtos = response.data;
+      });
     },
 
     async deletePedido(id) {
-      const req = await fetch(`http://localhost:3000/pedidos/${id}`, {
+      const req = await fetch(`http://localhost:3000/produtos/${id}`, {
         method: "DELETE",
       });
       const res = await req.json();
 
       // colocar uma msg de sistema
-      this.msg = `Pedido removido com sucesso!`;
+      this.msg = `Produto removido com sucesso!`;
 
       // limpar msg
       setTimeout(() => (this.msg = ""), 3000);
 
       this.getPedidos();
     },
-    async updatePedido(event, id) {
-      const option = event.target.value;
-      const dataJson = JSON.stringify({ status: option });
-      const req = await fetch(`http://localhost:3000/pedidos/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: dataJson,
-      });
-      const res = await req.json();
-
-      // colocar uma msg de sistema
-      this.msg = `Pedido com id${res.id} foi atualizado!`;
-
-      // limpar msg
-      setTimeout(() => (this.msg = ""), 3000);
-
-      //console.log(res);
-    },
   },
   mounted() {
     this.getPedidos();
+    this.getCores();
+    this.getFabricantes();
   },
 };
 </script>
@@ -110,7 +137,6 @@ export default {
 #pedido-table-heading,
 #pedido-table-rows,
 .pedido-table-row {
-  /* display: flex; */
   flex-wrap: wrap;
 }
 #pedido-table-heading {
@@ -124,14 +150,29 @@ export default {
   border-bottom: 1px solid #ccc;
 }
 #pedido-table-heading div,
-.pedido-table-row div {
-  width: 25%;
+.pedido-table-row {
+  width: 55%;
 }
 #pedido-table-heading .order-id,
 .pedido-table-row .order-number {
-  width: 25%;
+  width: 55%;
 }
 
+.variacoes {
+  border: 1px solid #ccc;
+}
+
+.variacoes-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0px;
+}
+
+.variacoes-cor,
+.variacoes-tamanho,
+.variacoes-preco {
+  width: 31%;
+}
 .row {
   border: 1px solid #ccc;
   margin: 1px;
@@ -151,6 +192,7 @@ select {
   color: rgb(178, 134, 97);
   font-weight: bold;
   border: 2px solid #222;
+  border-radius: 10px;
   padding: 10px;
   font-size: 16px;
   margin: 0 auto;

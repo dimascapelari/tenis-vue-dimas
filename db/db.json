@@ -147,28 +147,21 @@
       }
     ]
   },
-  "pedidos": [
+  "produtos": [
     {
-      "ean": "987456321",
-      "descricao": "cano baixo",
-      "detalhamento": "esporte",
-      "preco": "300,00",
-      "fabricante": "006fi",
-      "cor": "#0000FF",
-      "tamanho": "40",
-      "codigointerno": "147",
-      "id": 1
-    },
-    {
-      "ean": "112233445566",
-      "descricao": "cano alto",
-      "detalhamento": "sola de borracha",
-      "preco": "450,00",
+      "id": 2,
+      "ean": "321321321",
+      "codigointerno": "77777",
+      "descricao": "abcoooooo",
+      "detalhamento": "aaabbbccc",
       "fabricante": "001ni",
-      "cor": "#FFFFFF",
-      "tamanho": "37",
-      "codigointerno": "258",
-      "id": 2
+      "variacoes": [
+        {
+          "cor": "#0000FF",
+          "tamanho": 11,
+          "preco": "222,23"
+        }
+      ]
     }
   ]
 }
