@@ -64,6 +64,9 @@
             >Update</router-link
           >
 
+          <!-- <ButtonComp class="delete-btn" @click="deletePedido(produto.id)"
+            >Deletar</ButtonComp
+          > -->
           <button class="delete-btn" @click="deletePedido(produto.id)">
             Deletar
           </button>

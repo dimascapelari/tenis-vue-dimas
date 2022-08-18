@@ -60,6 +60,16 @@
           </select>
         </div>
 
+        <!-- <div class="btn-externo">
+          <button
+            type="button"
+            class="action action-success"
+            @click="adicionarVariacao"
+          >
+            V
+          </button>
+        </div> -->
+
         <div
           class="variacoes"
           v-for="(variacao, index) in variacoes"
@@ -117,7 +127,10 @@
           </div>
         </div>
         <div class="input-container">
-          <button class="submit-btn" @click="createPedido">Cadastrar</button>
+          <ButtonComp type="submit" class="submit-btn" @click="createPedido"
+            >Cadastrar</ButtonComp
+          >
+          <!-- <button class="submit-btn" @click="createPedido">Cadastrar</button> -->
         </div>
       </form>
     </div>

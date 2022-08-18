@@ -149,26 +149,6 @@
   },
   "produtos": [
     {
-      "ean": "1111111111111111111",
-      "descricao": "cano alto",
-      "detalhamento": "solado de borracha",
-      "fabricante": "003mi",
-      "codigointerno": "111",
-      "variacoes": [
-        {
-          "cor": "#FFFFFF",
-          "tamanho": "40",
-          "preco": "300,00"
-        },
-        {
-          "cor": "#FF4500",
-          "tamanho": "41",
-          "preco": "333,00"
-        }
-      ],
-      "id": 1
-    },
-    {
       "ean": "222222222222222222",
       "descricao": "cano baixo",
       "detalhamento": "esporte",
@@ -182,6 +162,21 @@
         }
       ],
       "id": 2
+    },
+    {
+      "ean": "1111111111111111111",
+      "descricao": "cano baixo",
+      "detalhamento": "esporte",
+      "fabricante": "009ol",
+      "codigointerno": "111",
+      "variacoes": [
+        {
+          "cor": "#FF4500",
+          "tamanho": "39",
+          "preco": "360,00"
+        }
+      ],
+      "id": 3
     }
   ]
 }
