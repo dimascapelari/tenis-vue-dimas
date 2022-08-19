@@ -58,6 +58,7 @@ export default {
   methods: {
     getProducts() {
       this.products = data;
+      //console.log(data);
     },
     // getTenis() {
     //   const req = data;

@@ -136,7 +136,39 @@
     </div>
 
     <table>
-      <DataTableComp></DataTableComp>
+      <!-- <DataTableComp></DataTableComp> -->
+      <div>
+        <h2>DataTableComp</h2>
+        <DataTable
+          :value="products"
+          editMode="row"
+          dataKey="id"
+          v-model:editingRows="editingRows"
+          @row-edit-save="onRowEditSave"
+          responsiveLayout="scroll"
+        >
+          <CompColumn field="code" header="Cor" style="width: 20%">
+            <template #editor="{ data, field }">
+              <InputText v-model="data[field]" autofocus />
+            </template>
+          </CompColumn>
+          <CompColumn field="name" header="Tamanho" style="width: 20%">
+            <template #editor="{ data, field }">
+              <InputText v-model="data[field]" />
+            </template>
+          </CompColumn>
+          <CompColumn field="price" header="Preço" style="width: 20%">
+            <template #editor="{ data, field }">
+              <InputText v-model="data[field]" />
+            </template>
+          </CompColumn>
+          <CompColumn
+            :rowEditor="true"
+            style="width: 10%; min-width: 8rem"
+            bodyStyle="text-align:center"
+          ></CompColumn>
+        </DataTable>
+      </div>
     </table>
   </div>
 </template>
@@ -144,6 +176,7 @@
 <script>
 import Message from "./Message.vue";
 import DataTableComp from "./DataTableComp.vue";
+// import { data } from "../data/data";
 
 export default {
   name: "PedidoForm",
@@ -166,10 +199,22 @@ export default {
       msg: null,
       codigointerno: null,
       variacoes: [{ cor: "", tamanho: "", preco: "" }],
+      txt: "DataTableComp",
+      editingRows: [],
+      products: null,
     };
   },
   // funções
   methods: {
+    getProducts() {
+      this.products = this.variacoes;
+      console.log(this.variacoes);
+    },
+    onRowEditSave(event) {
+      let { newData, index } = event;
+
+      this.products[index] = newData;
+    },
     adicionarVariacao() {
       const variacao = { cor: "", tamanho: "", preco: "" };
       this.variacoes.push(variacao);
@@ -235,10 +280,20 @@ export default {
   // executa funções depois de prontas
   mounted() {
     this.getTenis();
+    this.getProducts();
   },
   components: {
     Message,
     DataTableComp,
+  },
+
+  created() {
+    this.columns = [
+      { field: "code", header: "Code" },
+      { field: "name", header: "Name" },
+      { field: "quantity", header: "Quantity" },
+      { field: "price", header: "Price" },
+    ];
   },
 };
 </script>
