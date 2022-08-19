@@ -147,9 +147,33 @@
           @row-edit-save="onRowEditSave"
           responsiveLayout="scroll"
         >
-          <CompColumn field="code" header="Cor" style="width: 20%">
+          <CompColumn field="cores" header="Cor" style="width: 20%">
             <template #editor="{ data, field }">
-              <InputText v-model="data[field]" autofocus />
+              <Dropdown
+                v-model="data[field]"
+                :options="cores"
+                optionLabel="tipo"
+                optionValue="tipo"
+              />
+
+              <!-- <div class="variacoes-input-container">
+                <label for="cores">Cores:</label>
+                <select name="cores" id="cores" v-model="variacao.cor">
+                  <option
+                    v-for="cor in cores"
+                    :key="cor.id"
+                    :value="cor.codcor"
+                  >
+                    {{ cor.tipo }}
+                  </option>
+                </select>
+              </div> -->
+
+              <!--  -->
+              <!-- <InputText v-model="data[field]" autofocus /> -->
+            </template>
+            <template #body="slotProps">
+              {{ slotProps.data.cores }}
             </template>
           </CompColumn>
           <CompColumn field="name" header="Tamanho" style="width: 20%">
@@ -176,6 +200,7 @@
 <script>
 import Message from "./Message.vue";
 import DataTableComp from "./DataTableComp.vue";
+import Dropdown from "primevue/dropdown";
 // import { data } from "../data/data";
 
 export default {
@@ -206,10 +231,6 @@ export default {
   },
   // funções
   methods: {
-    getProducts() {
-      this.products = this.variacoes;
-      console.log(this.variacoes);
-    },
     onRowEditSave(event) {
       let { newData, index } = event;
 
@@ -224,6 +245,10 @@ export default {
       this.variacoes = this.variacoes.filter(
         (variacao, index) => index !== indexVariacao
       );
+    },
+    getProducts() {
+      this.products = this.variacoes;
+      console.log(this.products[0]);
     },
 
     // Puxa dos dados da API
@@ -285,6 +310,7 @@ export default {
   components: {
     Message,
     DataTableComp,
+    Dropdown,
   },
 
   created() {
