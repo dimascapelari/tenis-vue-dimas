@@ -134,11 +134,16 @@
         </div>
       </form>
     </div>
+
+    <table>
+      <DataTableComp></DataTableComp>
+    </table>
   </div>
 </template>
 
 <script>
 import Message from "./Message.vue";
+import DataTableComp from "./DataTableComp.vue";
 
 export default {
   name: "PedidoForm",
@@ -233,6 +238,7 @@ export default {
   },
   components: {
     Message,
+    DataTableComp,
   },
 };
 </script>

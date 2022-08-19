@@ -1,5 +1,5 @@
-export const data = {
-    tenis: {
+export const data = [
+    {
         cores: [
             {
                 id: 1,
@@ -145,38 +145,39 @@ export const data = {
                 tipo: "Reebok",
                 codmarc: "010re"
             }
+        ],
+
+        produtos: [
+            {
+                ean: "222222222222222222",
+                descricao: "cano baixo",
+                detalhamento: "esporte",
+                fabricante: "010re",
+                codigointerno: "222",
+                variacoes: [
+                    {
+                        cor: "#0000FF",
+                        tamanho: "42",
+                        preco: "444,00"
+                    }
+                ],
+                id: 2
+            },
+            {
+                ean: "1111111111111111111",
+                descricao: "cano baixo",
+                detalhamento: "esporte",
+                fabricante: "009ol",
+                codigointerno: "111",
+                variacoes: [
+                    {
+                        cor: "#FF4500",
+                        tamanho: "39",
+                        preco: "360,00"
+                    }
+                ],
+                id: 3
+            }
         ]
-    },
-    produtos: [
-        {
-            ean: "222222222222222222",
-            descricao: "cano baixo",
-            detalhamento: "esporte",
-            fabricante: "010re",
-            codigointerno: "222",
-            variacoes: [
-                {
-                    cor: "#0000FF",
-                    tamanho: "42",
-                    preco: "444,00"
-                }
-            ],
-            id: 2
-        },
-        {
-            ean: "1111111111111111111",
-            descricao: "cano baixo",
-            detalhamento: "esporte",
-            fabricante: "009ol",
-            codigointerno: "111",
-            variacoes: [
-                {
-                    cor: "#FF4500",
-                    tamanho: "39",
-                    preco: "360,00"
-                }
-            ],
-            id: 3
-        }
-    ]
-}
+    }
+]
