@@ -125,7 +125,10 @@
               -
             </button>
           </div>
+          <!-- --------------------------------------------- -->
+          <!-- --------------------------------------------- -->
         </div>
+
         <div class="input-container">
           <ButtonComp type="submit" class="submit-btn" @click="createPedido"
             >Cadastrar</ButtonComp
@@ -138,7 +141,7 @@
     <table>
       <!-- <DataTableComp></DataTableComp> -->
       <div>
-        <h2>DataTableComp</h2>
+        <h2>DataTable</h2>
         <DataTable
           :value="products"
           editMode="row"
@@ -147,6 +150,7 @@
           @row-edit-save="onRowEditSave"
           responsiveLayout="scroll"
         >
+          <!-- -------------------------------------- -->
           <CompColumn field="cores" header="Cor" style="width: 20%">
             <template #editor="{ data, field }">
               <Dropdown
@@ -155,33 +159,28 @@
                 optionLabel="tipo"
                 optionValue="tipo"
               />
-
-              <!-- <div class="variacoes-input-container">
-                <label for="cores">Cores:</label>
-                <select name="cores" id="cores" v-model="variacao.cor">
-                  <option
-                    v-for="cor in cores"
-                    :key="cor.id"
-                    :value="cor.codcor"
-                  >
-                    {{ cor.tipo }}
-                  </option>
-                </select>
-              </div> -->
-
-              <!--  -->
-              <!-- <InputText v-model="data[field]" autofocus /> -->
             </template>
             <template #body="slotProps">
               {{ slotProps.data.cores }}
             </template>
           </CompColumn>
-          <CompColumn field="name" header="Tamanho" style="width: 20%">
+          <!-- -------------------------------------- -->
+          <CompColumn field="tamanhos" header="Tamanho" style="width: 20%">
             <template #editor="{ data, field }">
-              <InputText v-model="data[field]" />
+              <!-- <InputText v-model="data[field]" /> -->
+              <Dropdown
+                v-model="data[field]"
+                :options="tamanhos"
+                optionLabel="tipo"
+                optionValue="tipo"
+              />
+            </template>
+            <template #body="slotProps">
+              {{ slotProps.data.tamanhos }}
             </template>
           </CompColumn>
-          <CompColumn field="price" header="Preço" style="width: 20%">
+          <!-- -------------------------------------- -->
+          <CompColumn field="preco" header="Preço" style="width: 20%">
             <template #editor="{ data, field }">
               <InputText v-model="data[field]" />
             </template>
@@ -248,7 +247,7 @@ export default {
     },
     getProducts() {
       this.products = this.variacoes;
-      console.log(this.products[0]);
+      // console.log(this.products[0]);
     },
 
     // Puxa dos dados da API
