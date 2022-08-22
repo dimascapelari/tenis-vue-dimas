@@ -207,6 +207,51 @@
         }
       ],
       "id": 3
+    },
+    {
+      "ean": "4444444",
+      "descricao": "coturno",
+      "detalhamento": "couro",
+      "fabricante": "010re",
+      "codigointerno": "4444",
+      "variacoes": [
+        {
+          "cores": 4,
+          "tamanhos": 9,
+          "preco": "300,00"
+        },
+        {
+          "cores": 4,
+          "tamanhos": 10,
+          "preco": "300,00"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "ean": "5555555",
+      "descricao": "teste",
+      "detalhamento": "testando",
+      "fabricante": "006fi",
+      "codigointerno": "55555",
+      "variacoes": [
+        {
+          "cores": 1,
+          "tamanhos": 4,
+          "preco": "250,00"
+        },
+        {
+          "cores": 3,
+          "tamanhos": 2,
+          "preco": "300,00"
+        },
+        {
+          "cores": 5,
+          "tamanhos": 5,
+          "preco": "250,00"
+        }
+      ],
+      "id": 5
     }
   ]
 }

@@ -60,64 +60,6 @@
           </select>
         </div>
 
-        <div v-for="(variacao, index) in variacoes" :key="index">
-          <!-- <div class="variacoes-input-container">
-            <label for="cores">Cores:</label>
-            <select name="cores" id="cores" v-model="variacao.cores">
-              <option v-for="cor in cores" :key="cor.id" :value="cor.id">
-                {{ cor.tipo }}
-              </option>
-            </select>
-          </div> -->
-
-          <!-- <div class="variacoes-input-container">
-            <label for="tamanho">Tamanho:</label>
-            <select name="descricao" id="tamanho" v-model="variacao.tamanhos">
-              <option
-                v-for="tamanho in tamanhos"
-                :key="tamanho.id"
-                :value="tamanho.id"
-              >
-                {{ tamanho.tipo }}
-              </option>
-            </select>
-          </div> -->
-
-          <!-- <div class="variacoes-input-container">
-            <label for="nome">Preço:</label>
-            <input
-              type="text"
-              id="preco"
-              name="preco"
-              v-model="variacao.preco"
-              placeholder="Digite valor"
-            />
-          </div> -->
-
-          <!-- <div class="variacoes-input-container">
-            <button
-              type="button"
-              class="action action-success"
-              @click="adicionarVariacao"
-            >
-              +
-            </button> -->
-          <!-- <button
-              v-if="variacoes.length > 1"
-              type="button"
-              class="action action-danger"
-              @click="removerVariacao(index)"
-            >
-              -
-            </button> -->
-          <!-- </div> -->
-          <!-- --------------------------------------------- -->
-
-          <!-- --------------------------------------------- -->
-        </div>
-        <!-- --------------------------------------------- -->
-        <!-- <div class="variacoes-input-container"></div> -->
-        <!-- --------------------------------------------- -->
         <div class="input-container">
           <ButtonComp
             type="button"
@@ -126,11 +68,6 @@
           >
             Adicionar variação
           </ButtonComp>
-
-          <!-- <ButtonComp type="submit" class="submit-btn" @click="createPedido"
-            >Cadastrar</ButtonComp
-          > -->
-          <!-- <button class="submit-btn" @click="createPedido">Cadastrar</button> -->
         </div>
 
         <section class="container-variacoes">
@@ -208,7 +145,6 @@
           <ButtonComp type="submit" class="submit-btn" @click="createPedido"
             >Cadastrar</ButtonComp
           >
-          <!-- <button class="submit-btn" @click="createPedido">Cadastrar</button> -->
         </div>
       </form>
     </div>
@@ -218,7 +154,6 @@
 <script>
 import Message from "./Message.vue";
 import Dropdown from "primevue/dropdown";
-// import { data } from "../data/data";
 
 export default {
   name: "PedidoForm",
