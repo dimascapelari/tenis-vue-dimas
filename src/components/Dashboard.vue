@@ -38,7 +38,7 @@
           >
             <div class="variacoes-cor">
               <template v-for="(cor, index) in cores" :key="index">
-                <template v-if="cor.codcor === variacao.cor"
+                <template v-if="cor.id === variacao.cores"
                   ><strong>Cor:</strong> {{ cor.tipo }}</template
                 >
               </template>
@@ -46,8 +46,8 @@
             <div class="variacoes-tamanho">
               <!-- <strong>Tamanho:</strong>{{ variacao.tamanho }} -->
               <div v-for="(tamanho, index) in tamanhos" :key="index">
-                <div v-if="tamanho.tipo === variacao.tamanho">
-                  <strong>Tamanho:</strong>{{ tamanho.id }}
+                <div v-if="tamanho.id === variacao.tamanhos">
+                  <strong>Tamanho:</strong>{{ tamanho.tipo }}
                 </div>
               </div>
             </div>

@@ -77,8 +77,8 @@
         >
           <div class="variacoes-input-container">
             <label for="cores">Cores:</label>
-            <select name="cores" id="cores" v-model="variacao.cor">
-              <option v-for="cor in cores" :key="cor.id" :value="cor.codcor">
+            <select name="cores" id="cores" v-model="variacao.cores">
+              <option v-for="cor in cores" :key="cor.id" :value="cor.id">
                 {{ cor.tipo }}
               </option>
             </select>
@@ -86,11 +86,11 @@
 
           <div class="variacoes-input-container">
             <label for="tamanho">Tamanho:</label>
-            <select name="descricao" id="tamanho" v-model="variacao.tamanho">
+            <select name="descricao" id="tamanho" v-model="variacao.tamanhos">
               <option
                 v-for="tamanho in tamanhos"
                 :key="tamanho.id"
-                :value="tamanho.tipo"
+                :value="tamanho.id"
               >
                 {{ tamanho.tipo }}
               </option>
@@ -141,7 +141,7 @@
     <table>
       <!-- <DataTableComp></DataTableComp> -->
       <div>
-        <h2>DataTable</h2>
+        <h2>Variações</h2>
         <DataTable
           :value="products"
           editMode="row"
@@ -157,11 +157,16 @@
                 v-model="data[field]"
                 :options="cores"
                 optionLabel="tipo"
-                optionValue="tipo"
+                optionValue="id"
               />
             </template>
             <template #body="slotProps">
-              {{ slotProps.data.cores }}
+              <template v-for="(cor, index) in cores" :key="index">
+                <span v-if="slotProps.data.cores === cor.id">
+                  {{ cor.tipo }}
+                </span>
+              </template>
+              <!-- {{ slotProps.data.cores }} -->
             </template>
           </CompColumn>
           <!-- -------------------------------------- -->
@@ -170,13 +175,19 @@
               <!-- <InputText v-model="data[field]" /> -->
               <Dropdown
                 v-model="data[field]"
+                @change="chn"
                 :options="tamanhos"
                 optionLabel="tipo"
-                optionValue="tipo"
+                optionValue="id"
               />
             </template>
             <template #body="slotProps">
-              {{ slotProps.data.tamanhos }}
+              <template v-for="(tamanho, index) in tamanhos" :key="index">
+                <span v-if="slotProps.data.tamanhos === tamanho.id">
+                  {{ tamanho.tipo }}
+                </span>
+              </template>
+              <!-- {{ slotProps.data.tamanhos }} -->
             </template>
           </CompColumn>
           <!-- -------------------------------------- -->
@@ -222,22 +233,27 @@ export default {
       fabricante: null,
       msg: null,
       codigointerno: null,
-      variacoes: [{ cor: "", tamanho: "", preco: "" }],
+      variacoes: [{ cores: "", tamanhos: "", preco: "" }],
       txt: "DataTableComp",
       editingRows: [],
       products: null,
+      variacao: {},
     };
+  },
+  watch: {
+    editingRows() {
+      console.log(this.editingRows);
+    },
   },
   // funções
   methods: {
-    onRowEditSave(event) {
-      let { newData, index } = event;
-
-      this.products[index] = newData;
+    chn($event) {
+      console.log($event);
     },
     adicionarVariacao() {
-      const variacao = { cor: "", tamanho: "", preco: "" };
-      this.variacoes.push(variacao);
+      this.variacao = { cores: "", tamanhos: "", preco: "" };
+      this.variacoes.push(this.variacao);
+      console.log(this.variacoes);
     },
 
     removerVariacao(indexVariacao) {
@@ -245,11 +261,6 @@ export default {
         (variacao, index) => index !== indexVariacao
       );
     },
-    getProducts() {
-      this.products = this.variacoes;
-      // console.log(this.products[0]);
-    },
-
     // Puxa dos dados da API
     async getTenis() {
       const req = await fetch("http://localhost:3000/tenis");
@@ -273,6 +284,7 @@ export default {
         codigointerno: this.codigointerno,
         variacoes: this.variacoes,
       };
+      console.log(data);
 
       const dataJson = JSON.stringify(data);
 
@@ -299,6 +311,16 @@ export default {
       this.cor = "";
       this.tamanho = "";
       this.codigointerno = "";
+    },
+    // DataTable
+    onRowEditSave(event) {
+      let { newData, index } = event;
+
+      this.products[index] = newData;
+    },
+    getProducts() {
+      this.products = this.variacoes;
+      // console.log(this.products[0]);
     },
   },
   // executa funções depois de prontas

@@ -149,34 +149,24 @@
   },
   "produtos": [
     {
-      "ean": "222222222222222222",
-      "descricao": "cano baixo",
-      "detalhamento": "esporte",
-      "fabricante": "010re",
-      "codigointerno": "222",
-      "variacoes": [
-        {
-          "cor": "#0000FF",
-          "tamanho": "42",
-          "preco": "444,00"
-        }
-      ],
-      "id": 2
-    },
-    {
-      "ean": "1111111111111111111",
-      "descricao": "cano baixo",
-      "detalhamento": "esporte",
-      "fabricante": "009ol",
+      "ean": "1111111",
+      "descricao": "cano alto",
+      "detalhamento": "sola de borracha",
+      "fabricante": "002ad",
       "codigointerno": "111",
       "variacoes": [
         {
-          "cor": "#FF4500",
-          "tamanho": "39",
-          "preco": "360,00"
+          "cores": 1,
+          "tamanhos": 11,
+          "preco": "250,00"
+        },
+        {
+          "cores": 2,
+          "tamanhos": 13,
+          "preco": "300,00"
         }
       ],
-      "id": 3
+      "id": 1
     }
   ]
 }
