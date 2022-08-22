@@ -43,10 +43,10 @@
             >
               <div class="variacoes-cores">
                 <strong>Cor:</strong>
-                <select v-model="variacao.cor">
+                <select v-model="variacao.cores">
                   <option
                     v-for="(cor, index) in cores"
-                    :value="cor.codcor"
+                    :value="cor.id"
                     :key="index"
                   >
                     {{ cor.tipo }}
@@ -55,10 +55,10 @@
               </div>
               <div class="variacoes-tamanho">
                 <strong>Tamanho:</strong>
-                <select v-model="variacao.tamanho">
+                <select v-model="variacao.tamanhos">
                   <option
                     v-for="(tamanho, index) in tamanhos"
-                    :value="tamanho.tipo"
+                    :value="tamanho.id"
                     :key="index"
                   >
                     {{ tamanho.tipo }}
