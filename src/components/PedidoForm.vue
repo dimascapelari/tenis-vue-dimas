@@ -60,31 +60,17 @@
           </select>
         </div>
 
-        <!-- <div class="btn-externo">
-          <button
-            type="button"
-            class="action action-success"
-            @click="adicionarVariacao"
-          >
-            V
-          </button>
-        </div> -->
-
-        <div
-          class="variacoes"
-          v-for="(variacao, index) in variacoes"
-          :key="index"
-        >
-          <div class="variacoes-input-container">
+        <div v-for="(variacao, index) in variacoes" :key="index">
+          <!-- <div class="variacoes-input-container">
             <label for="cores">Cores:</label>
             <select name="cores" id="cores" v-model="variacao.cores">
               <option v-for="cor in cores" :key="cor.id" :value="cor.id">
                 {{ cor.tipo }}
               </option>
             </select>
-          </div>
+          </div> -->
 
-          <div class="variacoes-input-container">
+          <!-- <div class="variacoes-input-container">
             <label for="tamanho">Tamanho:</label>
             <select name="descricao" id="tamanho" v-model="variacao.tamanhos">
               <option
@@ -95,9 +81,9 @@
                 {{ tamanho.tipo }}
               </option>
             </select>
-          </div>
+          </div> -->
 
-          <div class="variacoes-input-container">
+          <!-- <div class="variacoes-input-container">
             <label for="nome">Preço:</label>
             <input
               type="text"
@@ -106,29 +92,118 @@
               v-model="variacao.preco"
               placeholder="Digite valor"
             />
-          </div>
+          </div> -->
 
-          <div class="variacoes-input-container">
+          <!-- <div class="variacoes-input-container">
             <button
               type="button"
               class="action action-success"
               @click="adicionarVariacao"
             >
               +
-            </button>
-            <button
+            </button> -->
+          <!-- <button
               v-if="variacoes.length > 1"
               type="button"
               class="action action-danger"
               @click="removerVariacao(index)"
             >
               -
-            </button>
-          </div>
+            </button> -->
+          <!-- </div> -->
           <!-- --------------------------------------------- -->
+
           <!-- --------------------------------------------- -->
         </div>
+        <!-- --------------------------------------------- -->
+        <!-- <div class="variacoes-input-container"></div> -->
+        <!-- --------------------------------------------- -->
+        <div class="input-container">
+          <ButtonComp
+            type="button"
+            class="submit-btn"
+            @click="adicionarVariacao"
+          >
+            Adicionar variação
+          </ButtonComp>
 
+          <!-- <ButtonComp type="submit" class="submit-btn" @click="createPedido"
+            >Cadastrar</ButtonComp
+          > -->
+          <!-- <button class="submit-btn" @click="createPedido">Cadastrar</button> -->
+        </div>
+
+        <section class="container-variacoes">
+          <table class="variacoes">
+            <div>
+              <h2>Variações</h2>
+              <DataTable
+                :value="products"
+                editMode="row"
+                dataKey="id"
+                v-model:editingRows="editingRows"
+                @row-edit-save="onRowEditSave"
+                responsiveLayout="scroll"
+              >
+                <!-- -------------------------------------- -->
+                <CompColumn field="cores" header="Cor" style="width: 20%">
+                  <template #editor="{ data, field }">
+                    <Dropdown
+                      v-model="data[field]"
+                      :options="cores"
+                      optionLabel="tipo"
+                      optionValue="id"
+                    />
+                  </template>
+                  <template #body="slotProps">
+                    <template v-for="(cor, index) in cores" :key="index">
+                      <span v-if="slotProps.data.cores === cor.id">
+                        {{ cor.tipo }}
+                      </span>
+                    </template>
+                    <!-- {{ slotProps.data.cores }} -->
+                  </template>
+                </CompColumn>
+                <!-- -------------------------------------- -->
+                <CompColumn
+                  field="tamanhos"
+                  header="Tamanho"
+                  style="width: 20%"
+                >
+                  <template #editor="{ data, field }">
+                    <!-- <InputText v-model="data[field]" /> -->
+                    <Dropdown
+                      v-model="data[field]"
+                      @change="chn"
+                      :options="tamanhos"
+                      optionLabel="tipo"
+                      optionValue="id"
+                    />
+                  </template>
+                  <template #body="slotProps">
+                    <template v-for="(tamanho, index) in tamanhos" :key="index">
+                      <span v-if="slotProps.data.tamanhos === tamanho.id">
+                        {{ tamanho.tipo }}
+                      </span>
+                    </template>
+                    <!-- {{ slotProps.data.tamanhos }} -->
+                  </template>
+                </CompColumn>
+                <!-- -------------------------------------- -->
+                <CompColumn field="preco" header="Preço" style="width: 20%">
+                  <template #editor="{ data, field }">
+                    <InputText v-model="data[field]" />
+                  </template>
+                </CompColumn>
+                <CompColumn
+                  :rowEditor="true"
+                  style="width: 10%; min-width: 8rem"
+                  bodyStyle="text-align:center"
+                ></CompColumn>
+              </DataTable>
+            </div>
+          </table>
+        </section>
         <div class="input-container">
           <ButtonComp type="submit" class="submit-btn" @click="createPedido"
             >Cadastrar</ButtonComp
@@ -137,79 +212,11 @@
         </div>
       </form>
     </div>
-
-    <table>
-      <!-- <DataTableComp></DataTableComp> -->
-      <div>
-        <h2>Variações</h2>
-        <DataTable
-          :value="products"
-          editMode="row"
-          dataKey="id"
-          v-model:editingRows="editingRows"
-          @row-edit-save="onRowEditSave"
-          responsiveLayout="scroll"
-        >
-          <!-- -------------------------------------- -->
-          <CompColumn field="cores" header="Cor" style="width: 20%">
-            <template #editor="{ data, field }">
-              <Dropdown
-                v-model="data[field]"
-                :options="cores"
-                optionLabel="tipo"
-                optionValue="id"
-              />
-            </template>
-            <template #body="slotProps">
-              <template v-for="(cor, index) in cores" :key="index">
-                <span v-if="slotProps.data.cores === cor.id">
-                  {{ cor.tipo }}
-                </span>
-              </template>
-              <!-- {{ slotProps.data.cores }} -->
-            </template>
-          </CompColumn>
-          <!-- -------------------------------------- -->
-          <CompColumn field="tamanhos" header="Tamanho" style="width: 20%">
-            <template #editor="{ data, field }">
-              <!-- <InputText v-model="data[field]" /> -->
-              <Dropdown
-                v-model="data[field]"
-                @change="chn"
-                :options="tamanhos"
-                optionLabel="tipo"
-                optionValue="id"
-              />
-            </template>
-            <template #body="slotProps">
-              <template v-for="(tamanho, index) in tamanhos" :key="index">
-                <span v-if="slotProps.data.tamanhos === tamanho.id">
-                  {{ tamanho.tipo }}
-                </span>
-              </template>
-              <!-- {{ slotProps.data.tamanhos }} -->
-            </template>
-          </CompColumn>
-          <!-- -------------------------------------- -->
-          <CompColumn field="preco" header="Preço" style="width: 20%">
-            <template #editor="{ data, field }">
-              <InputText v-model="data[field]" />
-            </template>
-          </CompColumn>
-          <CompColumn
-            :rowEditor="true"
-            style="width: 10%; min-width: 8rem"
-            bodyStyle="text-align:center"
-          ></CompColumn>
-        </DataTable>
-      </div>
-    </table>
   </div>
 </template>
 
 <script>
 import Message from "./Message.vue";
-import DataTableComp from "./DataTableComp.vue";
 import Dropdown from "primevue/dropdown";
 // import { data } from "../data/data";
 
@@ -330,7 +337,6 @@ export default {
   },
   components: {
     Message,
-    DataTableComp,
     Dropdown,
   },
 
@@ -431,10 +437,20 @@ select {
   font-weight: bold;
 }
 
+.container-variacoes {
+  display: flex;
+  justify-content: center;
+}
+
 .variacoes {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   border: 1px solid rgb(178, 134, 97);
+}
+
+.variacoes h2 {
+  text-align: center;
+  color: rgb(178, 134, 97);
 }
 
 .submit-btn {

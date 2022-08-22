@@ -167,6 +167,46 @@
         }
       ],
       "id": 1
+    },
+    {
+      "ean": "2222222",
+      "descricao": "sapa tênis",
+      "detalhamento": "esporte",
+      "fabricante": "010re",
+      "codigointerno": "222",
+      "variacoes": [
+        {
+          "cores": 6,
+          "tamanhos": 11,
+          "preco": "350,00"
+        },
+        {
+          "cores": 4,
+          "tamanhos": 12,
+          "preco": "360,00"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "ean": "3333333",
+      "descricao": "cano alto",
+      "detalhamento": "esporte",
+      "fabricante": "005al",
+      "codigointerno": "333",
+      "variacoes": [
+        {
+          "cores": 5,
+          "tamanhos": 9,
+          "preco": "230,00"
+        },
+        {
+          "cores": 3,
+          "tamanhos": 10,
+          "preco": "245,00"
+        }
+      ],
+      "id": 3
     }
   ]
 }
