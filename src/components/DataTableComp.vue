@@ -60,17 +60,7 @@ export default {
       this.products = data;
       //console.log(data);
     },
-    // getTenis() {
-    //   const req = data;
-    //   const data = req.json();
-    //   this.codigointernos = data.codigointernos;
-    //   this.descricoes = data.descricoes;
-    //   this.detalhamentos = data.detalhamentos;
-    //   this.precos = data.precos;
-    //   this.fabricantes = data.fabricantes;
-    //   this.cores = data.cores;
-    //   this.tamanhos = data.tamanhos;
-    // },
+    
     onRowEditSave(event) {
       let { newData, index } = event;
 
